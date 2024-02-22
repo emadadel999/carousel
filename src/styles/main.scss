@@ -1,0 +1,8 @@
+
+@import './breakpoints.vars';
+@import './rebranding-variables';
+
+html, body, [nt-app] {
+    /* Overflow messes up position: sticky */
+    overflow-y: initial;
+}

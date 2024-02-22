@@ -1,0 +1,33 @@
+$screen-tiny: 525px !default;
+$screen-small: 740px !default;
+$screen-medium: 980px !default;
+$screen-large: 1400px !default;
+
+$screen-height-tiny: 400px !default;
+$screen-height-small: 600px !default;
+$screen-height-medium: 880px !default;
+$screen-height-large: 1000px !default;
+
+@mixin wider-than($width) {
+    @media (min-width: $width) {
+        @content;
+    }
+}
+
+@mixin taller-than($height) {
+    @media (min-height: $height) {
+        @content;
+    }
+}
+
+@mixin shorter-than($height) {
+    @media (max-height: $height) {
+        @content;
+    }
+}
+
+@mixin thinner-than($width) {
+    @media (max-width: $width) {
+        @content;
+    }
+}
