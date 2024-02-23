@@ -1,12 +1,12 @@
 {
   "name": "carousel-vue3-ts",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "a Vue3 carousel component.",
   "author": "Emad Abdelmaksoud <e.abdellmaksoud@gmail.com>",
   "homepage": "https://github.com/emadadel999/carousel#readme",
   "repository": "https://github.com/emadadel999/carousel.git",
   "publishConfig": {
-    "@emadadel999:registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "main": "./dist/carousel-vue3-ts.js",
   "module": "./dist/carousel-vue3-ts.umd.cjs",
