@@ -16,12 +16,6 @@
     "skipLibCheck": true,
     "types": ["vite/client"],
   },
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["src/App.vue", "src/main.ts", "src/router/*", "src/views/*", "src/components/infinite-modulo.ts", "src/components/infinite-modulo.d.ts"],
 }
