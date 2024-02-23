@@ -1,13 +1,31 @@
 {
-  "name": "vue-project",
-  "version": "0.0.0",
+  "name": "carousel-vue3",
+  "version": "1.0.0",
+  "description": "a Vue3 carousel component.",
+  "author": "Emad Abdelmaksoud <e.abdellmaksoud@gmail.com>",
+  "homepage": "https://github.com/emadadel999/carousel#readme",
   "private": true,
+  "main": "./dist/carousel-vue3.js",
+  "module": "./dist/carousel-vue3.umd.cjs",
+  "types": "./dist_types/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist_types/index.d.ts",
+        "default": "./dist/carousel-vue3.js"
+      },
+      "require": "./dist/carousel-vue3.umd.cjs",
+      "style": "./dist/style.css"
+    },
+    "./style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
+    "build": "vue-tsc --declaration --emitDeclarationOnly && vite build",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+    "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@types/convert-units": "^2.3.6",
@@ -18,6 +36,7 @@
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
+    "@babel/types": "^7.23.9",
     "@tsconfig/node18": "^18.2.0",
     "@types/debug": "^4.1.12",
     "@types/node": "^18.17.0",
