@@ -1,21 +1,20 @@
 {
-  "name": "carousel-vue3",
+  "name": "carousel-vue3-ts",
   "version": "1.0.0",
   "description": "a Vue3 carousel component.",
   "author": "Emad Abdelmaksoud <e.abdellmaksoud@gmail.com>",
   "homepage": "https://github.com/emadadel999/carousel#readme",
-  "private": true,
-  "main": "./dist/carousel-vue3.js",
-  "module": "./dist/carousel-vue3.umd.cjs",
+  "main": "./dist/carousel-vue3-ts.js",
+  "module": "./dist/carousel-vue3-ts.umd.cjs",
   "types": "./dist_types/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "import": {
         "types": "./dist_types/index.d.ts",
-        "default": "./dist/carousel-vue3.js"
+        "default": "./dist/carousel-vue3-ts.js"
       },
-      "require": "./dist/carousel-vue3.umd.cjs",
+      "require": "./dist/carousel-vue3-ts.umd.cjs",
       "style": "./dist/style.css"
     },
     "./style.css": "./dist/style.css"
