@@ -13,9 +13,9 @@
     "@types/convert-units": "^2.3.6",
     "convert-units": "^2.3.4",
     "debug": "^4.3.4",
+    "npm": "^10.4.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.4",
-    "wave-global-styles-library": "git+ssh://git@github.com:SpigotInc/wave-global-styles.git#dev"
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.0",

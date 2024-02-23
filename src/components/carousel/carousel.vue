@@ -109,18 +109,6 @@ const props = defineProps({
      * @example
      * [
      *     {
-     *         size: 2000,
-     *         itemsToShow: 6,
-     *     },
-     *     {
-     *         size: 1400,
-     *         itemsToShow: 5,
-     *     },
-     *     {
-     *         size: 980,
-     *         itemsToShow: 4,
-     *     },
-     *     {
      *         size: 800,
      *         itemsToShow: 3,
      *     },
@@ -178,19 +166,6 @@ const slideWidth = computed(() => {
     const result = 100 / itemsToShow.value;
     return `${result}%`;
 });
-
-
-// const isSSR = computed(() => import.meta.env.SSR)
-
-// // TODO: Change this on resize without everything breaking
-// const adjustedTransitionSpeed = computed(() => {
-//     if (!isSSR.value) {
-//         return Math.floor(props.transitionSpeed * (windowWidth?.value / 10)) / 100;
-//     }
-//     return props.transitionSpeed;
-// });
-
-// debug('adjustedTransitionSpeed - ', props.transitionSpeed, adjustedTransitionSpeed.value);
 
 onMounted(() => {
     debug('onMounted() - ');
