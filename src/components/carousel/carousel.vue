@@ -171,9 +171,7 @@ onMounted(() => {
     debug('onMounted() - ');
     if (props.autoSlide) {
         document.addEventListener('visibilitychange', onPageVisibilityChange);
-        nextTick(() => {
-            startAnimation();
-        });
+        startAnimation();
     }
 });
 
@@ -189,12 +187,10 @@ onUnmounted(() => {
 
 function onPageVisibilityChange() {
     debug('onPageVisibilityChange() - ', document.hidden);
-    nextTick(() => {
-        if (document.hidden)
-            stopAnimation();
-        else
-            startAnimation();
-    });
+    if (document.hidden)
+        stopAnimation();
+    else
+        startAnimation();
 }
 
 
@@ -211,7 +207,6 @@ function animate(now: DOMHighResTimeStamp) {
     if (then === 0) then = now;
 
     elapsed = now - then;
-
     if (elapsed >= speed) {
         then = now;
         slideRight();
@@ -237,7 +232,7 @@ function pauseAnimation(stopTransitionClass: string) {
     slidesWrapperInner.value?.offsetHeight;
 }
 
-
+//TODO: "immediate" type is not working as expected
 function onMouseEnter() {
     debug('onMouseEnter() - ');
     if (props.autoSlide && props.stopOnHover) {
@@ -255,6 +250,8 @@ function onMouseLeave() {
 }
 
 function slideRight() {
+    console.log('currentSlide.value', currentSlide.value);
+    console.log('numOfViews.value', numOfViews.value);
     if (currentSlide.value === numOfViews.value - 1) {
         resetSliding(next);
     } else {
@@ -280,11 +277,17 @@ function resetSliding(move: Function) {
 
 function next() {
     currentSlide.value = infiniteModulo(currentSlide.value + 1, numOfViews.value);
+    if (currentSlide.value <= 1) {
+        slidesWrapperInner.value?.offsetHeight; //flush css to cause a reflow.
+    }
     slidesWrapper.value?.style.setProperty("--current-slide", `${currentSlide.value}`);
 }
 
 function prev() {
     currentSlide.value = infiniteModulo(currentSlide.value - 1, numOfViews.value);
+    if (currentSlide.value <= 1) {
+        slidesWrapperInner.value?.offsetHeight; //flush css to cause a reflow.
+    }
     slidesWrapper.value?.style.setProperty("--current-slide", `${currentSlide.value}`);
 }
 
@@ -295,7 +298,7 @@ function prev() {
         @click="slideLeft">
         <slot name="prev"></slot>
     </button>
-    <div class="carousel-slides__wrapper" ref="slidesWrapper">
+    <div class="carousel-slides__wrapper" ref="slidesWrapper" :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }">
         <ul class="carousel-slides__wrapper-inner" ref="slidesWrapperInner"
             :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }" @mouseenter="onMouseEnter"
             @mouseleave="onMouseLeave">
