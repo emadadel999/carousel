@@ -20,7 +20,7 @@ const slides = [
 </script>
 
 <template>
-  <div class="home__top-content__slides">
+  <div class="container">
       <Carousel 
           :slides-array="slides" 
           :transition-speed="12" 
@@ -28,7 +28,7 @@ const slides = [
           :items-to-show="8"
       >
           <template #slide="{ src, alt }">
-              <div class="home__top-content__slides-slide">
+              <div class="container-slide">
                   <img
                       :src="src"
                       :alt="alt"
@@ -43,13 +43,13 @@ const slides = [
 
 <style lang="scss">
 @import './styles/main.scss';
-.home__top-content__slides {
+.container {
   z-index: 900;
   height: 50%;
   overflow: hidden;
 }
 
-.home__top-content__slides-slide {
+.container-slide {
   @include flex-center;
   width: 100%;
   height: 100%;
