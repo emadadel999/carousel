@@ -1,71 +1,70 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import Carousel from './components/carousel/carousel.vue';
+
+
+const slides = [
+    { src: '/slides/1.png'},
+    { src: '/slides/2.png'},
+    { src: '/slides/3.png'},
+    { src: '/slides/4.png'},
+    { src: '/slides/5.png'},
+    { src: '/slides/6.png'},
+    { src: '/slides/7.png'},
+    { src: '/slides/8.png'},
+    { src: '/slides/9.png'},
+    { src: '/slides/10.png'},
+    { src: '/slides/11.png'},
+    { src: '/slides/12.png'},
+    { src: '/slides/13.png'},
+];
 </script>
 
 <template>
-  <RouterView />
+  <div class="home__top-content__slides">
+      <Carousel 
+          :slides-array="slides" 
+          :transition-speed="12" 
+          :auto-slide="true" 
+          :items-to-show="8"
+      >
+          <template #slide="{ src, alt }">
+              <div class="home__top-content__slides-slide">
+                  <img
+                      :src="src"
+                      :alt="alt"
+                      width="256"
+                      height="335"
+                  />
+              </div>
+          </template>
+      </Carousel>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style lang="scss">
+@import './styles/main.scss';
+.home__top-content__slides {
+  z-index: 900;
+  height: 50%;
+  overflow: hidden;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.home__top-content__slides-slide {
+  @include flex-center;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+  height: 100%;
+  padding: 5px;
+  margin: 5px;
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  > picture,
+  > img {
+      border-radius: 10px;
+      border: 0;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
   }
 }
+
 </style>
