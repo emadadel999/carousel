@@ -22,9 +22,9 @@ export default defineConfig(<any>{
     lib: {
         // src/indext.ts is where we have exported the component(s)
         entry: path.resolve(__dirname, "src/index.ts"),
-        name: "carousel-vue3",
+        name: "carousel-vue3-ts",
         // the name of the output files when the build is run
-        fileName: "carousel-vue3",
+        fileName: "carousel-vue3-ts",
     },
     rollupOptions: {
         // make sure to externalize deps that shouldn't be bundled
