@@ -14,23 +14,45 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+
+    - name: Install Node.js v20
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        
+    - name: Build Vue
+      run: |
+            if [ true ==  ${{ inputs.useyarn }} ]; then yarn install --frozen-lockfile; else npm ci; fi
+            if [ true ==  ${{ inputs.useyarn }} ]; then yarn build; else npm run build; fi
+            if [ "none" !=  ${{ inputs.cname }} ]; then cd dist&&echo '${{ inputs.cname }}' > CNAME&&cd ..; fi
+            ls
+      shell: bash
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
       
-    # - name: Install Node.js v20
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: 20
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        # Upload entire repository
+        path: './dist'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+
+      
+
     # - run: npm ci
     # - run: npm run build
     # - run: npm test
 
-    - name: Vue App to Github Pages
-      uses: StruggleYang/VuePagesAction@2.0.0
-      with:
-          useyarn: false # if project is npm build ,set false
+    # - name: Vue App to Github Pages
+    #   uses: StruggleYang/VuePagesAction@2.0.0
+    #   with:
+    #       useyarn: false # if project is npm build ,set false
 
   # deploy:
   #   environment:
