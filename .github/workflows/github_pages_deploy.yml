@@ -8,6 +8,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,11 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      
+    - name: Install Node.js v20
+      uses: actions/setup-node@v3
       with:
         node-version: 20
-        cache: 'npm'
     - run: npm ci
     - run: npm run build
     - run: npm test
@@ -31,6 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
