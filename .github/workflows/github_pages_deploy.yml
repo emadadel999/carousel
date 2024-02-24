@@ -43,7 +43,6 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         # Upload entire repository
-        name: github-pages2
         path: './dist'
     - name: Deploy to GitHub Pages
       id: deployment
