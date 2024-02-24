@@ -19,26 +19,31 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
       
-    - name: Install Node.js v20
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20
-    - run: npm ci
-    - run: npm run build
-    - run: npm test
+    # - name: Install Node.js v20
+    #   uses: actions/setup-node@v3
+    #   with:
+    #     node-version: 20
+    # - run: npm ci
+    # - run: npm run build
+    # - run: npm test
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: dist
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - name: Vue App to Github Pages
+      uses: StruggleYang/VuePagesAction@2.0.0
+      with:
+          useyarn: false # if project is npm build ,set false
+
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         # Upload entire repository
+  #         path: dist
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
