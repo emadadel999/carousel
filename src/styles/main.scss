@@ -3,6 +3,17 @@
 @import './rebranding-variables';
 
 html, body, [nt-app] {
-    /* Overflow messes up position: sticky */
-    overflow-y: initial;
+    background-color: black;
+    margin: 0;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#app {
+    border-radius: 10px;
+    border: 0;
 }

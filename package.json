@@ -6,7 +6,7 @@
   "homepage": "https://github.com/emadadel999/carousel#readme",
   "repository": "https://github.com/emadadel999/carousel.git",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@emadadel999:registry": "https://npm.pkg.github.com"
   },
   "main": "./dist/carousel-vue3-ts.js",
   "module": "./dist/carousel-vue3-ts.umd.cjs",
