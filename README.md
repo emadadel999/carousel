@@ -1,6 +1,41 @@
 # carousel
 a Vue3 carousel component with auto-slide and stop-on-hover.
 
+## setup
+
+```
+npm i auth-form-react
+```
+
+## how to use
+
+```typescript
+<script setup lang="ts">
+import Carousel from "carousel-vue3-ts";
+const slides = [
+  { src: "/slides/1.png" },
+  { src: "/slides/2.png" },
+  { src: "/slides/3.png" },
+  { src: "/slides/4.png" },
+  { src: "/slides/5.png" },
+  { src: "/slides/6.png" }
+];
+</script>
+
+<template>
+    <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4">
+        <template #slide="{ src, alt }">
+            <img :src="src" :alt="alt" width="256" height="335" />
+        </template>
+    </Carousel>
+</template>
+```
+
+## demo
+
+https://emad-abdelmaksoud/portfolio/carousel
+
+
 ## component props:
 #### `slidesArray`: 
 the array of slides to be shown. you can define how its value is shown inside the component's tags.<br>
