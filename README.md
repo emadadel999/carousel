@@ -4,7 +4,7 @@ a Vue3 carousel component with auto-slide and stop-on-hover.
 ## setup
 
 ```
-npm i auth-form-react
+npm i carousel-vue3-ts
 ```
 
 ## how to use
@@ -30,10 +30,6 @@ const slides = [
     </Carousel>
 </template>
 ```
-
-## demo
-
-https://emad-abdelmaksoud/portfolio/carousel
 
 
 ## component props:
