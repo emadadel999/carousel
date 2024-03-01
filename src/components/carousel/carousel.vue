@@ -400,10 +400,10 @@ function prev() {
   margin: 5px;
 
   .__img,
-  >img,
-  >picture,
-  >svg,
-  >i {
+  img,
+  picture,
+  svg,
+  i {
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;

@@ -306,7 +306,7 @@ var ae = ie;
   };
 })(z, z.exports);
 var le = z.exports;
-const ue = /* @__PURE__ */ se(le), V = (r) => (ee("data-v-12f9659a"), r = r(), te(), r), ce = { class: "carousel__container" }, de = /* @__PURE__ */ V(() => /* @__PURE__ */ L("img", {
+const ue = /* @__PURE__ */ se(le), V = (r) => (ee("data-v-daa75785"), r = r(), te(), r), ce = { class: "carousel__container" }, de = /* @__PURE__ */ V(() => /* @__PURE__ */ L("img", {
   src: ne,
   class: "__icon",
   alt: "arrow left"
@@ -561,7 +561,7 @@ const ge = (r, o) => {
   for (const [d, l] of o)
     e[d] = l;
   return e;
-}, he = /* @__PURE__ */ ge(me, [["__scopeId", "data-v-12f9659a"]]);
+}, he = /* @__PURE__ */ ge(me, [["__scopeId", "data-v-daa75785"]]);
 export {
   he as Carousel
 };
