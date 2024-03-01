@@ -9,6 +9,8 @@ interface iBreakpoint {
   itemsToShow: number;
 }
 
+const emit = defineEmits(['imgClicked'])
+
 //TODO: validate props and handle errors
 const props = defineProps({
   /**
@@ -307,7 +309,7 @@ function prev() {
         :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }" @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave">
         <li v-for="(slide, index) in clonedArr" :key="index" :id="`${index + 1}`" :style="{ flex: `0 0 ${slideWidth}` }"
-          :class="slideContainerClass ? `slide ${slideContainerClass}` : 'slide'">
+          :class="slideContainerClass ? `slide ${slideContainerClass}` : 'slide'" @click="$emit('imgClicked')">
           <slot name="slide" v-bind="slide" :_class="['__img']">
             <img :src="slide.src" class="__img" />
           </slot>

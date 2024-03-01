@@ -131,7 +131,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         };
         default: null;
     };
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    imgClicked: (...args: any[]) => void;
+}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     /**
      * an array of slides to be shown.
      * you can define how its value is shown inside the component's tags.
@@ -260,7 +262,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         };
         default: null;
     };
-}>>, {
+}>> & {
+    onImgClicked?: ((...args: any[]) => any) | undefined;
+}, {
     itemsToShow: number;
     transitionSpeed: number;
     timingFunction: string;

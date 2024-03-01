@@ -1,184 +1,184 @@
-import { defineComponent as J, ref as B, computed as j, onMounted as Z, onBeforeUnmount as G, onUnmounted as K, openBlock as M, createElementBlock as E, normalizeStyle as I, normalizeClass as H, renderSlot as P, createCommentVNode as U, createElementVNode as L, Fragment as Q, renderList as X, mergeProps as Y, pushScopeId as ee, popScopeId as te } from "vue";
-const ne = "/arrow-left.svg", re = "/arrow-right.svg";
-function q(r, o) {
-  let e = r % o;
-  return e < 0 && (e += o), e;
+import { defineComponent as Z, ref as O, computed as H, onMounted as G, onBeforeUnmount as K, onUnmounted as Q, openBlock as M, createElementBlock as $, normalizeStyle as B, normalizeClass as P, renderSlot as N, createCommentVNode as q, createElementVNode as E, Fragment as X, renderList as Y, mergeProps as ee, pushScopeId as te, popScopeId as ne } from "vue";
+const re = "/arrow-left.svg", se = "/arrow-right.svg";
+function R(s, a) {
+  let t = s % a;
+  return t < 0 && (t += a), t;
 }
-function se(r) {
-  return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
+function oe(s) {
+  return s && s.__esModule && Object.prototype.hasOwnProperty.call(s, "default") ? s.default : s;
 }
-var z = { exports: {} }, N, R;
-function oe() {
-  if (R)
-    return N;
-  R = 1;
-  var r = 1e3, o = r * 60, e = o * 60, d = e * 24, l = d * 7, f = d * 365.25;
-  N = function(t, n) {
+var T = { exports: {} }, z, V;
+function ie() {
+  if (V)
+    return z;
+  V = 1;
+  var s = 1e3, a = s * 60, t = a * 60, i = t * 24, g = i * 7, c = i * 365.25;
+  z = function(e, n) {
     n = n || {};
-    var s = typeof t;
-    if (s === "string" && t.length > 0)
-      return h(t);
-    if (s === "number" && isFinite(t))
-      return n.long ? a(t) : F(t);
+    var r = typeof e;
+    if (r === "string" && e.length > 0)
+      return d(e);
+    if (r === "number" && isFinite(e))
+      return n.long ? l(e) : v(e);
     throw new Error(
-      "val is not a non-empty string or a valid number. val=" + JSON.stringify(t)
+      "val is not a non-empty string or a valid number. val=" + JSON.stringify(e)
     );
   };
-  function h(t) {
-    if (t = String(t), !(t.length > 100)) {
+  function d(e) {
+    if (e = String(e), !(e.length > 100)) {
       var n = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
-        t
+        e
       );
       if (n) {
-        var s = parseFloat(n[1]), v = (n[2] || "ms").toLowerCase();
-        switch (v) {
+        var r = parseFloat(n[1]), y = (n[2] || "ms").toLowerCase();
+        switch (y) {
           case "years":
           case "year":
           case "yrs":
           case "yr":
           case "y":
-            return s * f;
+            return r * c;
           case "weeks":
           case "week":
           case "w":
-            return s * l;
+            return r * g;
           case "days":
           case "day":
           case "d":
-            return s * d;
+            return r * i;
           case "hours":
           case "hour":
           case "hrs":
           case "hr":
           case "h":
-            return s * e;
+            return r * t;
           case "minutes":
           case "minute":
           case "mins":
           case "min":
           case "m":
-            return s * o;
+            return r * a;
           case "seconds":
           case "second":
           case "secs":
           case "sec":
           case "s":
-            return s * r;
+            return r * s;
           case "milliseconds":
           case "millisecond":
           case "msecs":
           case "msec":
           case "ms":
-            return s;
+            return r;
           default:
             return;
         }
       }
     }
   }
-  function F(t) {
-    var n = Math.abs(t);
-    return n >= d ? Math.round(t / d) + "d" : n >= e ? Math.round(t / e) + "h" : n >= o ? Math.round(t / o) + "m" : n >= r ? Math.round(t / r) + "s" : t + "ms";
+  function v(e) {
+    var n = Math.abs(e);
+    return n >= i ? Math.round(e / i) + "d" : n >= t ? Math.round(e / t) + "h" : n >= a ? Math.round(e / a) + "m" : n >= s ? Math.round(e / s) + "s" : e + "ms";
   }
-  function a(t) {
-    var n = Math.abs(t);
-    return n >= d ? c(t, n, d, "day") : n >= e ? c(t, n, e, "hour") : n >= o ? c(t, n, o, "minute") : n >= r ? c(t, n, r, "second") : t + " ms";
+  function l(e) {
+    var n = Math.abs(e);
+    return n >= i ? f(e, n, i, "day") : n >= t ? f(e, n, t, "hour") : n >= a ? f(e, n, a, "minute") : n >= s ? f(e, n, s, "second") : e + " ms";
   }
-  function c(t, n, s, v) {
-    var _ = n >= s * 1.5;
-    return Math.round(t / s) + " " + v + (_ ? "s" : "");
+  function f(e, n, r, y) {
+    var b = n >= r * 1.5;
+    return Math.round(e / r) + " " + y + (b ? "s" : "");
   }
-  return N;
+  return z;
 }
-function ie(r) {
-  e.debug = e, e.default = e, e.coerce = a, e.disable = f, e.enable = l, e.enabled = h, e.humanize = oe(), e.destroy = c, Object.keys(r).forEach((t) => {
-    e[t] = r[t];
-  }), e.names = [], e.skips = [], e.formatters = {};
-  function o(t) {
+function ae(s) {
+  t.debug = t, t.default = t, t.coerce = l, t.disable = c, t.enable = g, t.enabled = d, t.humanize = ie(), t.destroy = f, Object.keys(s).forEach((e) => {
+    t[e] = s[e];
+  }), t.names = [], t.skips = [], t.formatters = {};
+  function a(e) {
     let n = 0;
-    for (let s = 0; s < t.length; s++)
-      n = (n << 5) - n + t.charCodeAt(s), n |= 0;
-    return e.colors[Math.abs(n) % e.colors.length];
+    for (let r = 0; r < e.length; r++)
+      n = (n << 5) - n + e.charCodeAt(r), n |= 0;
+    return t.colors[Math.abs(n) % t.colors.length];
   }
-  e.selectColor = o;
-  function e(t) {
-    let n, s = null, v, _;
-    function g(...m) {
-      if (!g.enabled)
+  t.selectColor = a;
+  function t(e) {
+    let n, r = null, y, b;
+    function h(...C) {
+      if (!h.enabled)
         return;
-      const y = g, b = Number(/* @__PURE__ */ new Date()), x = b - (n || b);
-      y.diff = x, y.prev = n, y.curr = b, n = b, m[0] = e.coerce(m[0]), typeof m[0] != "string" && m.unshift("%O");
-      let w = 0;
-      m[0] = m[0].replace(/%([a-zA-Z%])/g, (S, A) => {
-        if (S === "%%")
+      const F = h, w = Number(/* @__PURE__ */ new Date()), L = w - (n || w);
+      F.diff = L, F.prev = n, F.curr = w, n = w, C[0] = t.coerce(C[0]), typeof C[0] != "string" && C.unshift("%O");
+      let _ = 0;
+      C[0] = C[0].replace(/%([a-zA-Z%])/g, (A, j) => {
+        if (A === "%%")
           return "%";
-        w++;
-        const $ = e.formatters[A];
-        if (typeof $ == "function") {
-          const O = m[w];
-          S = $.call(y, O), m.splice(w, 1), w--;
+        _++;
+        const S = t.formatters[j];
+        if (typeof S == "function") {
+          const x = C[_];
+          A = S.call(F, x), C.splice(_, 1), _--;
         }
-        return S;
-      }), e.formatArgs.call(y, m), (y.log || e.log).apply(y, m);
+        return A;
+      }), t.formatArgs.call(F, C), (F.log || t.log).apply(F, C);
     }
-    return g.namespace = t, g.useColors = e.useColors(), g.color = e.selectColor(t), g.extend = d, g.destroy = e.destroy, Object.defineProperty(g, "enabled", {
+    return h.namespace = e, h.useColors = t.useColors(), h.color = t.selectColor(e), h.extend = i, h.destroy = t.destroy, Object.defineProperty(h, "enabled", {
       enumerable: !0,
       configurable: !1,
-      get: () => s !== null ? s : (v !== e.namespaces && (v = e.namespaces, _ = e.enabled(t)), _),
-      set: (m) => {
-        s = m;
+      get: () => r !== null ? r : (y !== t.namespaces && (y = t.namespaces, b = t.enabled(e)), b),
+      set: (C) => {
+        r = C;
       }
-    }), typeof e.init == "function" && e.init(g), g;
+    }), typeof t.init == "function" && t.init(h), h;
   }
-  function d(t, n) {
-    const s = e(this.namespace + (typeof n > "u" ? ":" : n) + t);
-    return s.log = this.log, s;
+  function i(e, n) {
+    const r = t(this.namespace + (typeof n > "u" ? ":" : n) + e);
+    return r.log = this.log, r;
   }
-  function l(t) {
-    e.save(t), e.namespaces = t, e.names = [], e.skips = [];
+  function g(e) {
+    t.save(e), t.namespaces = e, t.names = [], t.skips = [];
     let n;
-    const s = (typeof t == "string" ? t : "").split(/[\s,]+/), v = s.length;
-    for (n = 0; n < v; n++)
-      s[n] && (t = s[n].replace(/\*/g, ".*?"), t[0] === "-" ? e.skips.push(new RegExp("^" + t.slice(1) + "$")) : e.names.push(new RegExp("^" + t + "$")));
+    const r = (typeof e == "string" ? e : "").split(/[\s,]+/), y = r.length;
+    for (n = 0; n < y; n++)
+      r[n] && (e = r[n].replace(/\*/g, ".*?"), e[0] === "-" ? t.skips.push(new RegExp("^" + e.slice(1) + "$")) : t.names.push(new RegExp("^" + e + "$")));
   }
-  function f() {
-    const t = [
-      ...e.names.map(F),
-      ...e.skips.map(F).map((n) => "-" + n)
+  function c() {
+    const e = [
+      ...t.names.map(v),
+      ...t.skips.map(v).map((n) => "-" + n)
     ].join(",");
-    return e.enable(""), t;
+    return t.enable(""), e;
   }
-  function h(t) {
-    if (t[t.length - 1] === "*")
+  function d(e) {
+    if (e[e.length - 1] === "*")
       return !0;
-    let n, s;
-    for (n = 0, s = e.skips.length; n < s; n++)
-      if (e.skips[n].test(t))
+    let n, r;
+    for (n = 0, r = t.skips.length; n < r; n++)
+      if (t.skips[n].test(e))
         return !1;
-    for (n = 0, s = e.names.length; n < s; n++)
-      if (e.names[n].test(t))
+    for (n = 0, r = t.names.length; n < r; n++)
+      if (t.names[n].test(e))
         return !0;
     return !1;
   }
-  function F(t) {
-    return t.toString().substring(2, t.toString().length - 2).replace(/\.\*\?$/, "*");
+  function v(e) {
+    return e.toString().substring(2, e.toString().length - 2).replace(/\.\*\?$/, "*");
   }
-  function a(t) {
-    return t instanceof Error ? t.stack || t.message : t;
+  function l(e) {
+    return e instanceof Error ? e.stack || e.message : e;
   }
-  function c() {
+  function f() {
     console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
   }
-  return e.enable(e.load()), e;
+  return t.enable(t.load()), t;
 }
-var ae = ie;
-(function(r, o) {
-  o.formatArgs = d, o.save = l, o.load = f, o.useColors = e, o.storage = h(), o.destroy = (() => {
-    let a = !1;
+var le = ae;
+(function(s, a) {
+  a.formatArgs = i, a.save = g, a.load = c, a.useColors = t, a.storage = d(), a.destroy = (() => {
+    let l = !1;
     return () => {
-      a || (a = !0, console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."));
+      l || (l = !0, console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."));
     };
-  })(), o.colors = [
+  })(), a.colors = [
     "#0000CC",
     "#0000FF",
     "#0033CC",
@@ -256,65 +256,65 @@ var ae = ie;
     "#FFCC00",
     "#FFCC33"
   ];
-  function e() {
+  function t() {
     return typeof window < "u" && window.process && (window.process.type === "renderer" || window.process.__nwjs) ? !0 : typeof navigator < "u" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/) ? !1 : typeof document < "u" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
     typeof window < "u" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
     // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
     typeof navigator < "u" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
     typeof navigator < "u" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
   }
-  function d(a) {
-    if (a[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + a[0] + (this.useColors ? "%c " : " ") + "+" + r.exports.humanize(this.diff), !this.useColors)
+  function i(l) {
+    if (l[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + l[0] + (this.useColors ? "%c " : " ") + "+" + s.exports.humanize(this.diff), !this.useColors)
       return;
-    const c = "color: " + this.color;
-    a.splice(1, 0, c, "color: inherit");
-    let t = 0, n = 0;
-    a[0].replace(/%[a-zA-Z%]/g, (s) => {
-      s !== "%%" && (t++, s === "%c" && (n = t));
-    }), a.splice(n, 0, c);
+    const f = "color: " + this.color;
+    l.splice(1, 0, f, "color: inherit");
+    let e = 0, n = 0;
+    l[0].replace(/%[a-zA-Z%]/g, (r) => {
+      r !== "%%" && (e++, r === "%c" && (n = e));
+    }), l.splice(n, 0, f);
   }
-  o.log = console.debug || console.log || (() => {
+  a.log = console.debug || console.log || (() => {
   });
-  function l(a) {
+  function g(l) {
     try {
-      a ? o.storage.setItem("debug", a) : o.storage.removeItem("debug");
+      l ? a.storage.setItem("debug", l) : a.storage.removeItem("debug");
     } catch {
     }
   }
-  function f() {
-    let a;
+  function c() {
+    let l;
     try {
-      a = o.storage.getItem("debug");
+      l = a.storage.getItem("debug");
     } catch {
     }
-    return !a && typeof process < "u" && "env" in process && (a = process.env.DEBUG), a;
+    return !l && typeof process < "u" && "env" in process && (l = process.env.DEBUG), l;
   }
-  function h() {
+  function d() {
     try {
       return localStorage;
     } catch {
     }
   }
-  r.exports = ae(o);
-  const { formatters: F } = r.exports;
-  F.j = function(a) {
+  s.exports = le(a);
+  const { formatters: v } = s.exports;
+  v.j = function(l) {
     try {
-      return JSON.stringify(a);
-    } catch (c) {
-      return "[UnexpectedJSONParseError]: " + c.message;
+      return JSON.stringify(l);
+    } catch (f) {
+      return "[UnexpectedJSONParseError]: " + f.message;
     }
   };
-})(z, z.exports);
-var le = z.exports;
-const ue = /* @__PURE__ */ se(le), V = (r) => (ee("data-v-daa75785"), r = r(), te(), r), ce = { class: "carousel__container" }, de = /* @__PURE__ */ V(() => /* @__PURE__ */ L("img", {
-  src: ne,
-  class: "__icon",
-  alt: "arrow left"
-}, null, -1)), fe = ["id"], Ce = ["src"], pe = /* @__PURE__ */ V(() => /* @__PURE__ */ L("img", {
+})(T, T.exports);
+var ue = T.exports;
+const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-939d40b3"), s = s(), ne(), s), de = { class: "carousel__container" }, fe = /* @__PURE__ */ J(() => /* @__PURE__ */ E("img", {
   src: re,
   class: "__icon",
+  alt: "arrow left"
+}, null, -1)), Ce = ["id"], me = ["src"], pe = /* @__PURE__ */ J(() => /* @__PURE__ */ E("img", {
+  src: se,
+  class: "__icon",
   alt: "arrow right"
-}, null, -1)), me = /* @__PURE__ */ J({
+}, null, -1)), ge = /* @__PURE__ */ Z({
   __name: "carousel",
   props: {
     /**
@@ -372,8 +372,8 @@ const ue = /* @__PURE__ */ se(le), V = (r) => (ee("data-v-daa75785"), r = r(), t
     stopOnHoverType: {
       type: String,
       default: "immediate",
-      validator(r) {
-        return ["immediate", "wait"].includes(r);
+      validator(s) {
+        return ["immediate", "wait"].includes(s);
       }
     },
     /**
@@ -435,133 +435,135 @@ const ue = /* @__PURE__ */ se(le), V = (r) => (ee("data-v-daa75785"), r = r(), t
       default: null
     }
   },
-  setup(r) {
-    const o = ue("wave:cmpnt:carousel"), e = r, d = B(), l = B(), f = B(0);
-    let h, F = !1, a, c, t;
-    const n = B(g()), s = j(() => {
-      let i = [];
-      const u = n.value * e.slidesArray.length + n.value;
-      let C = 0, p = 0;
-      for (; C <= u - 1; )
-        i.push(e.slidesArray[p]), C++, p++, p === e.slidesArray.length && (p = 0);
-      return i;
-    }), v = j(() => Math.ceil(s.value.length / n.value)), _ = j(() => `${100 / n.value}%`);
-    function g() {
-      let i = e.itemsToShow;
-      if (e.breakpoints && e.breakpoints.length > 0) {
-        const u = e.breakpoints.find((C) => C.size <= window.innerWidth);
-        u && (i = u.itemsToShow);
+  emits: ["imgClicked"],
+  setup(s, { emit: a }) {
+    const t = ce("wave:cmpnt:carousel"), i = s, g = O(), c = O(), d = O(0);
+    let v, l = !1, f, e, n;
+    const r = O(C()), y = H(() => {
+      let o = [];
+      const u = r.value * i.slidesArray.length + r.value;
+      let m = 0, p = 0;
+      for (; m <= u - 1; )
+        o.push(i.slidesArray[p]), m++, p++, p === i.slidesArray.length && (p = 0);
+      return o;
+    }), b = H(() => Math.ceil(y.value.length / r.value)), h = H(() => `${100 / r.value}%`);
+    function C() {
+      let o = i.itemsToShow;
+      if (i.breakpoints && i.breakpoints.length > 0) {
+        const u = i.breakpoints.find((m) => m.size <= window.innerWidth);
+        u && (o = u.itemsToShow);
       }
-      return i;
+      return o;
     }
-    Z(() => {
-      n.value = g(), o("onMounted() - "), window.addEventListener("resize", () => n.value = g()), e.autoSlide && (document.addEventListener("visibilitychange", m), y());
-    }), G(() => {
-      o("onBeforeUnmount() - "), document.removeEventListener("visibilitychange", m);
+    G(() => {
+      r.value = C(), t("onMounted() - "), window.addEventListener("resize", () => r.value = C()), i.autoSlide && (document.addEventListener("visibilitychange", F), w());
     }), K(() => {
-      o("onUnmounted() - "), window.cancelAnimationFrame(h);
+      t("onBeforeUnmount() - "), document.removeEventListener("visibilitychange", F);
+    }), Q(() => {
+      t("onUnmounted() - "), window.cancelAnimationFrame(v);
     });
-    function m() {
-      o("onPageVisibilityChange() - ", document.hidden), document.hidden ? x() : y();
+    function F() {
+      t("onPageVisibilityChange() - ", document.hidden), document.hidden ? _() : w();
     }
-    function y() {
-      F = !1, a = e.transitionSpeed * 1e3, c = 0, A(), h = window.requestAnimationFrame(b);
+    function w() {
+      l = !1, f = i.transitionSpeed * 1e3, e = 0, S(), v = window.requestAnimationFrame(L);
     }
-    function b(i) {
-      F || (c === 0 && (c = i), t = i - c, t >= a && (c = i, A()), h = window.requestAnimationFrame(b));
+    function L(o) {
+      l || (e === 0 && (e = o), n = o - e, n >= f && (e = o, S()), v = window.requestAnimationFrame(L));
     }
-    function x() {
-      var i, u, C, p, k;
-      F = !0, window.cancelAnimationFrame(h), (i = l.value) == null || i.classList.add("carousel__disable-transition"), f.value = 0, (u = d.value) == null || u.style.setProperty("--current-slide", `${f.value}`), (C = l.value) == null || C.offsetHeight, (p = l.value) == null || p.classList.remove("carousel__disable-transition"), (k = l.value) == null || k.offsetHeight;
+    function _() {
+      var o, u, m, p, k;
+      l = !0, window.cancelAnimationFrame(v), (o = c.value) == null || o.classList.add("carousel__disable-transition"), d.value = 0, (u = g.value) == null || u.style.setProperty("--current-slide", `${d.value}`), (m = c.value) == null || m.offsetHeight, (p = c.value) == null || p.classList.remove("carousel__disable-transition"), (k = c.value) == null || k.offsetHeight;
     }
-    function w(i) {
-      var u, C, p, k;
-      (u = l.value) == null || u.classList.add(i), (C = l.value) == null || C.offsetHeight, window.cancelAnimationFrame(h), (p = l.value) == null || p.classList.remove(i), (k = l.value) == null || k.offsetHeight;
-    }
-    function T() {
-      o("onMouseEnter() - "), e.autoSlide && e.stopOnHover && (e.stopOnHoverType === "wait" ? w("carousel__pause-transition") : w("carousel__disable-transition"));
-    }
-    function S() {
-      o("onMouseLeave() - "), e.autoSlide && e.stopOnHover && y();
+    function I(o) {
+      var u, m, p, k;
+      (u = c.value) == null || u.classList.add(o), (m = c.value) == null || m.offsetHeight, window.cancelAnimationFrame(v), (p = c.value) == null || p.classList.remove(o), (k = c.value) == null || k.offsetHeight;
     }
     function A() {
-      f.value === v.value - 1 ? O(W) : W();
+      t("onMouseEnter() - "), i.autoSlide && i.stopOnHover && (i.stopOnHoverType === "wait" ? I("carousel__pause-transition") : I("carousel__disable-transition"));
     }
-    function $() {
-      f.value === 0 ? O(D) : D();
+    function j() {
+      t("onMouseLeave() - "), i.autoSlide && i.stopOnHover && w();
     }
-    function O(i) {
-      var u, C, p;
-      (u = l.value) == null || u.classList.add("carousel__disable-transition"), i(), (C = l.value) == null || C.offsetHeight, (p = l.value) == null || p.classList.remove("carousel__disable-transition"), i();
+    function S() {
+      d.value === b.value - 1 ? W(D) : D();
     }
-    function W() {
-      var i, u;
-      f.value = q(f.value + 1, v.value), f.value <= 1 && ((i = l.value) == null || i.offsetHeight), (u = d.value) == null || u.style.setProperty("--current-slide", `${f.value}`);
+    function x() {
+      d.value === 0 ? W(U) : U();
+    }
+    function W(o) {
+      var u, m, p;
+      (u = c.value) == null || u.classList.add("carousel__disable-transition"), o(), (m = c.value) == null || m.offsetHeight, (p = c.value) == null || p.classList.remove("carousel__disable-transition"), o();
     }
     function D() {
-      var i, u;
-      f.value = q(f.value - 1, v.value), f.value <= 1 && ((i = l.value) == null || i.offsetHeight), (u = d.value) == null || u.style.setProperty("--current-slide", `${f.value}`);
+      var o, u;
+      d.value = R(d.value + 1, b.value), d.value <= 1 && ((o = c.value) == null || o.offsetHeight), (u = g.value) == null || u.style.setProperty("--current-slide", `${d.value}`);
     }
-    return (i, u) => (M(), E("div", ce, [
-      r.autoSlide ? U("", !0) : (M(), E("button", {
+    function U() {
+      var o, u;
+      d.value = R(d.value - 1, b.value), d.value <= 1 && ((o = c.value) == null || o.offsetHeight), (u = g.value) == null || u.style.setProperty("--current-slide", `${d.value}`);
+    }
+    return (o, u) => (M(), $("div", de, [
+      s.autoSlide ? q("", !0) : (M(), $("button", {
         key: 0,
         type: "button",
-        style: I(r.prevBtnStyle),
-        class: H(`carousel__btn ${r.prevBtnClass}`),
-        onClick: $
+        style: B(s.prevBtnStyle),
+        class: P(`carousel__btn ${s.prevBtnClass}`),
+        onClick: x
       }, [
-        P(i.$slots, "prev", { _class: ["__icon"] }, () => [
-          de
+        N(o.$slots, "prev", { _class: ["__icon"] }, () => [
+          fe
         ], !0)
       ], 6)),
-      L("div", {
+      E("div", {
         class: "carousel-slides__wrapper",
         ref_key: "slidesWrapper",
-        ref: d
+        ref: g
       }, [
-        L("ul", {
+        E("ul", {
           class: "carousel-slides__wrapper-inner",
           ref_key: "slidesWrapperInner",
-          ref: l,
-          style: I({ transition: `all ${e.transitionSpeed}s ${r.timingFunction}` }),
-          onMouseenter: T,
-          onMouseleave: S
+          ref: c,
+          style: B({ transition: `all ${i.transitionSpeed}s ${s.timingFunction}` }),
+          onMouseenter: A,
+          onMouseleave: j
         }, [
-          (M(!0), E(Q, null, X(s.value, (C, p) => (M(), E("li", {
+          (M(!0), $(X, null, Y(y.value, (m, p) => (M(), $("li", {
             key: p,
             id: `${p + 1}`,
-            style: I({ flex: `0 0 ${_.value}` }),
-            class: H(r.slideContainerClass ? `slide ${r.slideContainerClass}` : "slide")
+            style: B({ flex: `0 0 ${h.value}` }),
+            class: P(s.slideContainerClass ? `slide ${s.slideContainerClass}` : "slide"),
+            onClick: u[0] || (u[0] = (k) => o.$emit("imgClicked"))
           }, [
-            P(i.$slots, "slide", Y(C, { _class: ["__img"] }), () => [
-              L("img", {
-                src: C.src,
+            N(o.$slots, "slide", ee(m, { _class: ["__img"] }), () => [
+              E("img", {
+                src: m.src,
                 class: "__img"
-              }, null, 8, Ce)
+              }, null, 8, me)
             ], !0)
-          ], 14, fe))), 128))
+          ], 14, Ce))), 128))
         ], 36)
       ], 512),
-      r.autoSlide ? U("", !0) : (M(), E("button", {
+      s.autoSlide ? q("", !0) : (M(), $("button", {
         key: 1,
         type: "button",
-        style: I(r.nextBtnStyle),
-        class: H(`carousel__btn ${r.nextBtnClass}`),
-        onClick: A
+        style: B(s.nextBtnStyle),
+        class: P(`carousel__btn ${s.nextBtnClass}`),
+        onClick: S
       }, [
-        P(i.$slots, "next", { _class: ["__icon"] }, () => [
+        N(o.$slots, "next", { _class: ["__icon"] }, () => [
           pe
         ], !0)
       ], 6))
     ]));
   }
 });
-const ge = (r, o) => {
-  const e = r.__vccOpts || r;
-  for (const [d, l] of o)
-    e[d] = l;
-  return e;
-}, he = /* @__PURE__ */ ge(me, [["__scopeId", "data-v-daa75785"]]);
+const ve = (s, a) => {
+  const t = s.__vccOpts || s;
+  for (const [i, g] of a)
+    t[i] = g;
+  return t;
+}, ye = /* @__PURE__ */ ve(ge, [["__scopeId", "data-v-939d40b3"]]);
 export {
-  he as Carousel
+  ye as Carousel
 };
