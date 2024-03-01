@@ -12,7 +12,7 @@ function ie() {
   if (V)
     return z;
   V = 1;
-  var s = 1e3, a = s * 60, t = a * 60, i = t * 24, g = i * 7, c = i * 365.25;
+  var s = 1e3, a = s * 60, t = a * 60, i = t * 24, g = i * 7, u = i * 365.25;
   z = function(e, n) {
     n = n || {};
     var r = typeof e;
@@ -37,7 +37,7 @@ function ie() {
           case "yrs":
           case "yr":
           case "y":
-            return r * c;
+            return r * u;
           case "weeks":
           case "week":
           case "w":
@@ -82,16 +82,16 @@ function ie() {
   }
   function l(e) {
     var n = Math.abs(e);
-    return n >= i ? f(e, n, i, "day") : n >= t ? f(e, n, t, "hour") : n >= a ? f(e, n, a, "minute") : n >= s ? f(e, n, s, "second") : e + " ms";
+    return n >= i ? C(e, n, i, "day") : n >= t ? C(e, n, t, "hour") : n >= a ? C(e, n, a, "minute") : n >= s ? C(e, n, s, "second") : e + " ms";
   }
-  function f(e, n, r, y) {
+  function C(e, n, r, y) {
     var b = n >= r * 1.5;
     return Math.round(e / r) + " " + y + (b ? "s" : "");
   }
   return z;
 }
 function ae(s) {
-  t.debug = t, t.default = t, t.coerce = l, t.disable = c, t.enable = g, t.enabled = d, t.humanize = ie(), t.destroy = f, Object.keys(s).forEach((e) => {
+  t.debug = t, t.default = t, t.coerce = l, t.disable = u, t.enable = g, t.enabled = d, t.humanize = ie(), t.destroy = C, Object.keys(s).forEach((e) => {
     t[e] = s[e];
   }), t.names = [], t.skips = [], t.formatters = {};
   function a(e) {
@@ -103,30 +103,30 @@ function ae(s) {
   t.selectColor = a;
   function t(e) {
     let n, r = null, y, b;
-    function h(...C) {
+    function h(...m) {
       if (!h.enabled)
         return;
       const F = h, w = Number(/* @__PURE__ */ new Date()), L = w - (n || w);
-      F.diff = L, F.prev = n, F.curr = w, n = w, C[0] = t.coerce(C[0]), typeof C[0] != "string" && C.unshift("%O");
+      F.diff = L, F.prev = n, F.curr = w, n = w, m[0] = t.coerce(m[0]), typeof m[0] != "string" && m.unshift("%O");
       let _ = 0;
-      C[0] = C[0].replace(/%([a-zA-Z%])/g, (A, j) => {
+      m[0] = m[0].replace(/%([a-zA-Z%])/g, (A, j) => {
         if (A === "%%")
           return "%";
         _++;
         const S = t.formatters[j];
         if (typeof S == "function") {
-          const x = C[_];
-          A = S.call(F, x), C.splice(_, 1), _--;
+          const x = m[_];
+          A = S.call(F, x), m.splice(_, 1), _--;
         }
         return A;
-      }), t.formatArgs.call(F, C), (F.log || t.log).apply(F, C);
+      }), t.formatArgs.call(F, m), (F.log || t.log).apply(F, m);
     }
     return h.namespace = e, h.useColors = t.useColors(), h.color = t.selectColor(e), h.extend = i, h.destroy = t.destroy, Object.defineProperty(h, "enabled", {
       enumerable: !0,
       configurable: !1,
       get: () => r !== null ? r : (y !== t.namespaces && (y = t.namespaces, b = t.enabled(e)), b),
-      set: (C) => {
-        r = C;
+      set: (m) => {
+        r = m;
       }
     }), typeof t.init == "function" && t.init(h), h;
   }
@@ -141,7 +141,7 @@ function ae(s) {
     for (n = 0; n < y; n++)
       r[n] && (e = r[n].replace(/\*/g, ".*?"), e[0] === "-" ? t.skips.push(new RegExp("^" + e.slice(1) + "$")) : t.names.push(new RegExp("^" + e + "$")));
   }
-  function c() {
+  function u() {
     const e = [
       ...t.names.map(v),
       ...t.skips.map(v).map((n) => "-" + n)
@@ -166,14 +166,14 @@ function ae(s) {
   function l(e) {
     return e instanceof Error ? e.stack || e.message : e;
   }
-  function f() {
+  function C() {
     console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
   }
   return t.enable(t.load()), t;
 }
 var le = ae;
 (function(s, a) {
-  a.formatArgs = i, a.save = g, a.load = c, a.useColors = t, a.storage = d(), a.destroy = (() => {
+  a.formatArgs = i, a.save = g, a.load = u, a.useColors = t, a.storage = d(), a.destroy = (() => {
     let l = !1;
     return () => {
       l || (l = !0, console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."));
@@ -266,12 +266,12 @@ var le = ae;
   function i(l) {
     if (l[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + l[0] + (this.useColors ? "%c " : " ") + "+" + s.exports.humanize(this.diff), !this.useColors)
       return;
-    const f = "color: " + this.color;
-    l.splice(1, 0, f, "color: inherit");
+    const C = "color: " + this.color;
+    l.splice(1, 0, C, "color: inherit");
     let e = 0, n = 0;
     l[0].replace(/%[a-zA-Z%]/g, (r) => {
       r !== "%%" && (e++, r === "%c" && (n = e));
-    }), l.splice(n, 0, f);
+    }), l.splice(n, 0, C);
   }
   a.log = console.debug || console.log || (() => {
   });
@@ -281,7 +281,7 @@ var le = ae;
     } catch {
     }
   }
-  function c() {
+  function u() {
     let l;
     try {
       l = a.storage.getItem("debug");
@@ -300,17 +300,17 @@ var le = ae;
   v.j = function(l) {
     try {
       return JSON.stringify(l);
-    } catch (f) {
-      return "[UnexpectedJSONParseError]: " + f.message;
+    } catch (C) {
+      return "[UnexpectedJSONParseError]: " + C.message;
     }
   };
 })(T, T.exports);
 var ue = T.exports;
-const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-939d40b3"), s = s(), ne(), s), de = { class: "carousel__container" }, fe = /* @__PURE__ */ J(() => /* @__PURE__ */ E("img", {
+const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-723ddea4"), s = s(), ne(), s), de = { class: "carousel__container" }, fe = /* @__PURE__ */ J(() => /* @__PURE__ */ E("img", {
   src: re,
   class: "__icon",
   alt: "arrow left"
-}, null, -1)), Ce = ["id"], me = ["src"], pe = /* @__PURE__ */ J(() => /* @__PURE__ */ E("img", {
+}, null, -1)), Ce = ["id", "onClick"], me = ["src"], pe = /* @__PURE__ */ J(() => /* @__PURE__ */ E("img", {
   src: se,
   class: "__icon",
   alt: "arrow right"
@@ -437,26 +437,26 @@ const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-939d40b3"), s = s(), n
   },
   emits: ["imgClicked"],
   setup(s, { emit: a }) {
-    const t = ce("wave:cmpnt:carousel"), i = s, g = O(), c = O(), d = O(0);
-    let v, l = !1, f, e, n;
-    const r = O(C()), y = H(() => {
+    const t = ce("wave:cmpnt:carousel"), i = s, g = O(), u = O(), d = O(0);
+    let v, l = !1, C, e, n;
+    const r = O(m()), y = H(() => {
       let o = [];
-      const u = r.value * i.slidesArray.length + r.value;
-      let m = 0, p = 0;
-      for (; m <= u - 1; )
-        o.push(i.slidesArray[p]), m++, p++, p === i.slidesArray.length && (p = 0);
+      const c = r.value * i.slidesArray.length + r.value;
+      let f = 0, p = 0;
+      for (; f <= c - 1; )
+        o.push(i.slidesArray[p]), f++, p++, p === i.slidesArray.length && (p = 0);
       return o;
     }), b = H(() => Math.ceil(y.value.length / r.value)), h = H(() => `${100 / r.value}%`);
-    function C() {
+    function m() {
       let o = i.itemsToShow;
       if (i.breakpoints && i.breakpoints.length > 0) {
-        const u = i.breakpoints.find((m) => m.size <= window.innerWidth);
-        u && (o = u.itemsToShow);
+        const c = i.breakpoints.find((f) => f.size <= window.innerWidth);
+        c && (o = c.itemsToShow);
       }
       return o;
     }
     G(() => {
-      r.value = C(), t("onMounted() - "), window.addEventListener("resize", () => r.value = C()), i.autoSlide && (document.addEventListener("visibilitychange", F), w());
+      r.value = m(), t("onMounted() - "), window.addEventListener("resize", () => r.value = m()), i.autoSlide && (document.addEventListener("visibilitychange", F), w());
     }), K(() => {
       t("onBeforeUnmount() - "), document.removeEventListener("visibilitychange", F);
     }), Q(() => {
@@ -466,18 +466,18 @@ const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-939d40b3"), s = s(), n
       t("onPageVisibilityChange() - ", document.hidden), document.hidden ? _() : w();
     }
     function w() {
-      l = !1, f = i.transitionSpeed * 1e3, e = 0, S(), v = window.requestAnimationFrame(L);
+      l = !1, C = i.transitionSpeed * 1e3, e = 0, S(), v = window.requestAnimationFrame(L);
     }
     function L(o) {
-      l || (e === 0 && (e = o), n = o - e, n >= f && (e = o, S()), v = window.requestAnimationFrame(L));
+      l || (e === 0 && (e = o), n = o - e, n >= C && (e = o, S()), v = window.requestAnimationFrame(L));
     }
     function _() {
-      var o, u, m, p, k;
-      l = !0, window.cancelAnimationFrame(v), (o = c.value) == null || o.classList.add("carousel__disable-transition"), d.value = 0, (u = g.value) == null || u.style.setProperty("--current-slide", `${d.value}`), (m = c.value) == null || m.offsetHeight, (p = c.value) == null || p.classList.remove("carousel__disable-transition"), (k = c.value) == null || k.offsetHeight;
+      var o, c, f, p, k;
+      l = !0, window.cancelAnimationFrame(v), (o = u.value) == null || o.classList.add("carousel__disable-transition"), d.value = 0, (c = g.value) == null || c.style.setProperty("--current-slide", `${d.value}`), (f = u.value) == null || f.offsetHeight, (p = u.value) == null || p.classList.remove("carousel__disable-transition"), (k = u.value) == null || k.offsetHeight;
     }
     function I(o) {
-      var u, m, p, k;
-      (u = c.value) == null || u.classList.add(o), (m = c.value) == null || m.offsetHeight, window.cancelAnimationFrame(v), (p = c.value) == null || p.classList.remove(o), (k = c.value) == null || k.offsetHeight;
+      var c, f, p, k;
+      (c = u.value) == null || c.classList.add(o), (f = u.value) == null || f.offsetHeight, window.cancelAnimationFrame(v), (p = u.value) == null || p.classList.remove(o), (k = u.value) == null || k.offsetHeight;
     }
     function A() {
       t("onMouseEnter() - "), i.autoSlide && i.stopOnHover && (i.stopOnHoverType === "wait" ? I("carousel__pause-transition") : I("carousel__disable-transition"));
@@ -492,18 +492,18 @@ const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-939d40b3"), s = s(), n
       d.value === 0 ? W(U) : U();
     }
     function W(o) {
-      var u, m, p;
-      (u = c.value) == null || u.classList.add("carousel__disable-transition"), o(), (m = c.value) == null || m.offsetHeight, (p = c.value) == null || p.classList.remove("carousel__disable-transition"), o();
+      var c, f, p;
+      (c = u.value) == null || c.classList.add("carousel__disable-transition"), o(), (f = u.value) == null || f.offsetHeight, (p = u.value) == null || p.classList.remove("carousel__disable-transition"), o();
     }
     function D() {
-      var o, u;
-      d.value = R(d.value + 1, b.value), d.value <= 1 && ((o = c.value) == null || o.offsetHeight), (u = g.value) == null || u.style.setProperty("--current-slide", `${d.value}`);
+      var o, c;
+      d.value = R(d.value + 1, b.value), d.value <= 1 && ((o = u.value) == null || o.offsetHeight), (c = g.value) == null || c.style.setProperty("--current-slide", `${d.value}`);
     }
     function U() {
-      var o, u;
-      d.value = R(d.value - 1, b.value), d.value <= 1 && ((o = c.value) == null || o.offsetHeight), (u = g.value) == null || u.style.setProperty("--current-slide", `${d.value}`);
+      var o, c;
+      d.value = R(d.value - 1, b.value), d.value <= 1 && ((o = u.value) == null || o.offsetHeight), (c = g.value) == null || c.style.setProperty("--current-slide", `${d.value}`);
     }
-    return (o, u) => (M(), $("div", de, [
+    return (o, c) => (M(), $("div", de, [
       s.autoSlide ? q("", !0) : (M(), $("button", {
         key: 0,
         type: "button",
@@ -523,21 +523,21 @@ const ce = /* @__PURE__ */ oe(ue), J = (s) => (te("data-v-939d40b3"), s = s(), n
         E("ul", {
           class: "carousel-slides__wrapper-inner",
           ref_key: "slidesWrapperInner",
-          ref: c,
+          ref: u,
           style: B({ transition: `all ${i.transitionSpeed}s ${s.timingFunction}` }),
           onMouseenter: A,
           onMouseleave: j
         }, [
-          (M(!0), $(X, null, Y(y.value, (m, p) => (M(), $("li", {
+          (M(!0), $(X, null, Y(y.value, (f, p) => (M(), $("li", {
             key: p,
             id: `${p + 1}`,
             style: B({ flex: `0 0 ${h.value}` }),
             class: P(s.slideContainerClass ? `slide ${s.slideContainerClass}` : "slide"),
-            onClick: u[0] || (u[0] = (k) => o.$emit("imgClicked"))
+            onClick: (k) => o.$emit("imgClicked", f)
           }, [
-            N(o.$slots, "slide", ee(m, { _class: ["__img"] }), () => [
+            N(o.$slots, "slide", ee(f, { _class: ["__img"] }), () => [
               E("img", {
-                src: m.src,
+                src: f.src,
                 class: "__img"
               }, null, 8, me)
             ], !0)
@@ -563,7 +563,7 @@ const ve = (s, a) => {
   for (const [i, g] of a)
     t[i] = g;
   return t;
-}, ye = /* @__PURE__ */ ve(ge, [["__scopeId", "data-v-939d40b3"]]);
+}, ye = /* @__PURE__ */ ve(ge, [["__scopeId", "data-v-723ddea4"]]);
 export {
   ye as Carousel
 };

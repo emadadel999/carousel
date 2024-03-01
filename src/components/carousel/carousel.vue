@@ -309,7 +309,7 @@ function prev() {
         :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }" @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave">
         <li v-for="(slide, index) in clonedArr" :key="index" :id="`${index + 1}`" :style="{ flex: `0 0 ${slideWidth}` }"
-          :class="slideContainerClass ? `slide ${slideContainerClass}` : 'slide'" @click="$emit('imgClicked')">
+          :class="slideContainerClass ? `slide ${slideContainerClass}` : 'slide'" @click="$emit('imgClicked', slide)">
           <slot name="slide" v-bind="slide" :_class="['__img']">
             <img :src="slide.src" class="__img" />
           </slot>
