@@ -16,11 +16,31 @@ const slides = [
   { src: "/slides/12.png" },
   { src: "/slides/13.png" },
 ];
+
+const breakpoints = [
+  {
+    size: 1600,
+    itemsToShow: 5,
+  },
+  {
+    size: 400,
+    itemsToShow: 4,
+  },
+  {
+    size: 300,
+    itemsToShow: 3,
+  },
+  {
+    size: 0,
+    itemsToShow: 2
+  }
+];
 </script>
 
 <template>
   <div class="container">
-    <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4">
+    <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4"
+      :breakpoints="breakpoints">
       <template #slide="{ src, alt }">
         <!-- <div class="container-slide"> -->
         <img :src="src" :alt="alt" width="256" height="335" />

@@ -134,19 +134,11 @@ const props = defineProps({
 const slidesWrapper = ref<HTMLElement>();
 const slidesWrapperInner = ref<HTMLElement>();
 const currentSlide = ref(0);
-const windowWidth: Ref<number> = inject("windowWidth") as Ref<number>;
 let interval: DOMHighResTimeStamp;
 let stopSliding = false;
 let speed: number, then: DOMHighResTimeStamp, elapsed: number;
 
-const itemsToShow = computed(() => {
-  let result = props.itemsToShow;
-  if (props.breakpoints && props.breakpoints.length > 0) {
-    const breakpoint = props.breakpoints.find((b) => b.size <= windowWidth?.value);
-    if (breakpoint) result = breakpoint.itemsToShow;
-  }
-  return result;
-});
+const itemsToShow = ref(getItemsToShow());
 
 const clonedArr = computed(() => {
   let result: any[] = [];
@@ -170,8 +162,20 @@ const slideWidth = computed(() => {
   return `${result}%`;
 });
 
+function getItemsToShow() {
+  let result = props.itemsToShow;
+  if (props.breakpoints && props.breakpoints.length > 0) {
+    const breakpoint = props.breakpoints.find((b) => b.size <= window.innerWidth);
+    if (breakpoint) result = breakpoint.itemsToShow;
+  }
+  return result;
+}
+
 onMounted(() => {
+  itemsToShow.value = getItemsToShow();
+
   debug("onMounted() - ");
+  window.addEventListener('resize', () => itemsToShow.value = getItemsToShow());
   if (props.autoSlide) {
     document.addEventListener("visibilitychange", onPageVisibilityChange);
     startAnimation();
