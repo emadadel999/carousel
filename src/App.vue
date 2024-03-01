@@ -41,17 +41,14 @@ const breakpoints = [
   <div class="container">
     <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4"
       :breakpoints="breakpoints">
-      <template #slide="{ src, alt }">
-        <!-- <div class="container-slide"> -->
-        <img :src="src" :alt="alt" width="256" height="335" />
-        <!-- </div> -->
-      </template>
     </Carousel>
   </div>
 </template>
 
 <style lang="scss">
-@import "./styles/main.scss";
+.container {
+  background-color: black;
+}
 
 .carousel-slides__wrapper {
   background-color: khaki;

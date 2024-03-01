@@ -12,23 +12,54 @@ npm i carousel-vue3-ts
 ```typescript
 <script setup lang="ts">
 import Carousel from "carousel-vue3-ts";
+
 const slides = [
   { src: "/slides/1.png" },
   { src: "/slides/2.png" },
   { src: "/slides/3.png" },
   { src: "/slides/4.png" },
   { src: "/slides/5.png" },
-  { src: "/slides/6.png" }
+  { src: "/slides/6.png" },
+];
+
+const breakpoints = [
+  {
+    size: 1600,
+    itemsToShow: 5,
+  },
+  {
+    size: 400,
+    itemsToShow: 4,
+  },
+  {
+    size: 300,
+    itemsToShow: 3,
+  },
+  {
+    size: 0,
+    itemsToShow: 2
+  }
 ];
 </script>
 
 <template>
-    <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4">
-        <template #slide="{ src, alt }">
-            <img :src="src" :alt="alt" width="256" height="335" />
-        </template>
+  <div class="container">
+    <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4"
+      :breakpoints="breakpoints">
     </Carousel>
+  </div>
 </template>
+
+<style lang="scss">
+.container {
+  background-color: black;
+}
+.carousel-slides__wrapper {
+  background-color: khaki;
+  border-radius: 10px;
+  border: 0;
+}
+</style>
 ```
 
 
@@ -49,8 +80,8 @@ the way the slides should stop after hovering.<br>
 > *values* `"immediate", "wait"`
 #### `autoSlide`: 
 whether to automatically slide infinitely or no.
-#### `nextBtnClass`, `prevBtnClass`, `nextBtnStyle`, `prevBtnStyle`: 
-when `autoSlide` is false, define respective button class/inline style.
+#### `nextBtnClass`, `prevBtnClass`, `nextBtnStyle`, `prevBtnStyle`, `slideContainerClass`: 
+define respective button class/inline style.
 #### `breakpoints:` 
 breakpoints to change `itemsToShow` based on the screensize
 > example `[

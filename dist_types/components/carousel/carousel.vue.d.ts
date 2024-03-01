@@ -271,9 +271,13 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     prevBtnClass: string;
     breakpoints: iBreakpoint[];
 }, {}>, {
-    prev?(_: {}): any;
+    prev?(_: {
+        _class: string[];
+    }): any;
     slide?(_: any): any;
-    next?(_: {}): any;
+    next?(_: {
+        _class: string[];
+    }): any;
 }>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {

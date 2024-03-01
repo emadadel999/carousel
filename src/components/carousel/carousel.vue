@@ -254,8 +254,6 @@ function onMouseLeave() {
 }
 
 function slideRight() {
-  console.log("currentSlide.value", currentSlide.value);
-  console.log("numOfViews.value", numOfViews.value);
   if (currentSlide.value === numOfViews.value - 1) {
     resetSliding(next);
   } else {
@@ -300,8 +298,8 @@ function prev() {
   <div class="carousel__container">
     <button v-if="!autoSlide" type="button" :style="prevBtnStyle" :class="`carousel__btn ${prevBtnClass}`"
       @click="slideLeft">
-      <slot name="prev">
-        <img src="/arrow-left.svg" alt="arrow left" />
+      <slot name="prev" :_class="['__icon']">
+        <img src="/arrow-left.svg" class="__icon" alt="arrow left" />
       </slot>
     </button>
     <div class="carousel-slides__wrapper" ref="slidesWrapper">
@@ -309,30 +307,29 @@ function prev() {
         :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }" @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave">
         <li v-for="(slide, index) in clonedArr" :key="index" :id="`${index + 1}`" :style="{ flex: `0 0 ${slideWidth}` }"
-          :class="`slide ${slideContainerClass}`">
-          <slot name="slide" v-bind="slide"> </slot>
+          :class="slideContainerClass ? `slide ${slideContainerClass}` : 'slide'">
+          <slot name="slide" v-bind="slide" :_class="['__img']">
+            <img :src="slide.src" class="__img" />
+          </slot>
         </li>
       </ul>
     </div>
     <button type="button" v-if="!autoSlide" :style="nextBtnStyle" :class="`carousel__btn ${nextBtnClass}`"
       @click="slideRight">
-      <slot name="next">
-        <img src="/arrow-right.svg" alt="arrow right" />
+      <slot name="next" :_class="['__icon']">
+        <img src="/arrow-right.svg" class="__icon" alt="arrow right" />
       </slot>
     </button>
   </div>
 </template>
 
-<style lang="scss">
-@import "../../styles/main.scss";
-
+<style scoped lang="scss">
 .carousel__container {
   display: flex;
 }
 
 .carousel-slides__wrapper {
   width: fit-content;
-  min-width: 80%;
   height: 100%;
   --current-slide: 0;
   overflow: hidden;
@@ -341,22 +338,47 @@ function prev() {
 }
 
 .carousel__btn {
-  min-width: 10%;
-  width: 30%;
-  z-index: 1200;
+  z-index: 2;
   cursor: pointer;
   text-align: center;
   border: 0 solid transparent;
   background: transparent;
 
-  >picture,
-  >img {
-    border-radius: 10px;
-    border: 0;
-    width: auto;
+  .__icon,
+  img,
+  picture,
+  svg,
+  i {
+    min-width: 30px;
+    width: 50px;
+    height: 50px;
     max-width: 100%;
-    height: auto;
     max-height: 100%;
+
+    @media (max-width: 1124px) and (min-width: 901px) {
+      width: 50px;
+      height: 50px;
+    }
+
+    @media (max-width: 900px) and (min-width: 727px) {
+      width: 35px;
+      height: 35px;
+    }
+
+    @media (max-width: 726px) and (min-width: 600px) {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (max-width: 599px) and (min-width: 401px) {
+      width: 25px;
+      height: 25px;
+    }
+
+    @media (max-width: 400px) {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
@@ -375,52 +397,46 @@ function prev() {
   justify-content: center;
   align-items: center;
   max-height: 100%;
-  padding: 5px;
   margin: 5px;
 
-  * {
+  .__img,
+  >img,
+  >picture,
+  >svg,
+  >i {
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
     border: 0;
     width: 250px;
     height: 250px;
-  }
 
-  @media (max-width: 1124px) and (min-width: 901px) {
-    * {
+    @media (max-width: 1124px) and (min-width: 901px) {
       width: 200px;
       height: 200px;
     }
-  }
 
-  @media (max-width: 900px) and (min-width: 727px) {
-    * {
+    @media (max-width: 900px) and (min-width: 727px) {
       width: 150px;
       height: 150px;
     }
-  }
 
-  @media (max-width: 726px) and (min-width: 600px) {
-    * {
+    @media (max-width: 726px) and (min-width: 600px) {
       width: 130px;
       height: 130px;
     }
-  }
 
-  @media (max-width: 599px) and (min-width: 401px) {
-    * {
+    @media (max-width: 599px) and (min-width: 401px) {
       width: 100px;
       height: 100px;
     }
-  }
 
-  @media (max-width: 400px) {
-    * {
+    @media (max-width: 400px) {
       width: 80px;
       height: 80px;
     }
   }
+
 }
 
 .carousel__disable-transition {
