@@ -22,9 +22,9 @@ const slides = [
   <div class="container">
     <Carousel :slides-array="slides" :transition-speed="1" :auto-slide="false" :items-to-show="4">
       <template #slide="{ src, alt }">
-        <div class="container-slide">
-          <img :src="src" :alt="alt" width="256" height="335" />
-        </div>
+        <!-- <div class="container-slide"> -->
+        <img :src="src" :alt="alt" width="256" height="335" />
+        <!-- </div> -->
       </template>
     </Carousel>
   </div>
@@ -32,29 +32,10 @@ const slides = [
 
 <style lang="scss">
 @import "./styles/main.scss";
-.container {
-  overflow: hidden;
-}
 
 .carousel-slides__wrapper {
   background-color: khaki;
   border-radius: 10px;
   border: 0;
-}
-
-.container-slide {
-  @include flex-center;
-  width: 100%;
-  height: 100%;
-  padding: 5px;
-  margin: 5px;
-
-  > picture,
-  > img {
-    border-radius: 10px;
-    border: 0;
-    width: 20em;
-    height: 20em;
-  }
 }
 </style>

@@ -93,6 +93,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     prevBtnStyle: {
         type: ObjectConstructor;
     };
+    slideContainerClass: {
+        type: StringConstructor;
+    };
     /**
      * breakpoints to change itemsToShow based on the screensize
      * @example
@@ -218,6 +221,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
      */
     prevBtnStyle: {
         type: ObjectConstructor;
+    };
+    slideContainerClass: {
+        type: StringConstructor;
     };
     /**
      * breakpoints to change itemsToShow based on the screensize

@@ -104,6 +104,9 @@ const props = defineProps({
   prevBtnStyle: {
     type: Object,
   },
+  slideContainerClass: {
+    type: String
+  },
   /**
    * breakpoints to change itemsToShow based on the screensize
    * @example
@@ -291,25 +294,24 @@ function prev() {
 
 <template>
   <div class="carousel__container">
-    <button v-if="!autoSlide" type="button" :style="prevBtnStyle" :class="`carousel__btn ${prevBtnClass}`" @click="slideLeft">
+    <button v-if="!autoSlide" type="button" :style="prevBtnStyle" :class="`carousel__btn ${prevBtnClass}`"
+      @click="slideLeft">
       <slot name="prev">
         <img src="/arrow-left.svg" alt="arrow left" />
       </slot>
     </button>
     <div class="carousel-slides__wrapper" ref="slidesWrapper">
-      <ul
-        class="carousel-slides__wrapper-inner"
-        ref="slidesWrapperInner"
-        :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-      >
-        <li v-for="(slide, index) in clonedArr" :key="index" :id="`${index + 1}`" :style="{ flex: `0 0 ${slideWidth}` }" class="slide">
+      <ul class="carousel-slides__wrapper-inner" ref="slidesWrapperInner"
+        :style="{ transition: `all ${props.transitionSpeed}s ${timingFunction}` }" @mouseenter="onMouseEnter"
+        @mouseleave="onMouseLeave">
+        <li v-for="(slide, index) in clonedArr" :key="index" :id="`${index + 1}`" :style="{ flex: `0 0 ${slideWidth}` }"
+          :class="`slide ${slideContainerClass}`">
           <slot name="slide" v-bind="slide"> </slot>
         </li>
       </ul>
     </div>
-    <button type="button" v-if="!autoSlide" :style="nextBtnStyle" :class="`carousel__btn ${nextBtnClass}`" @click="slideRight">
+    <button type="button" v-if="!autoSlide" :style="nextBtnStyle" :class="`carousel__btn ${nextBtnClass}`"
+      @click="slideRight">
       <slot name="next">
         <img src="/arrow-right.svg" alt="arrow right" />
       </slot>
@@ -317,11 +319,13 @@ function prev() {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "../../styles/main.scss";
+
 .carousel__container {
   display: flex;
 }
+
 .carousel-slides__wrapper {
   width: fit-content;
   min-width: 80%;
@@ -340,8 +344,9 @@ function prev() {
   text-align: center;
   border: 0 solid transparent;
   background: transparent;
-  > picture,
-  > img {
+
+  >picture,
+  >img {
     border-radius: 10px;
     border: 0;
     width: auto;
@@ -359,13 +364,57 @@ function prev() {
   display: flex;
   transform: translateX(calc(-100% * var(--current-slide)));
 
-  .slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+  padding: 5px;
+  margin: 5px;
+
+  * {
+    max-width: 100%;
     max-height: 100%;
+    border-radius: 10px;
+    border: 0;
+    width: 250px;
+    height: 250px;
+  }
+
+  @media (max-width: 1124px) and (min-width: 901px) {
     * {
-      max-width: 100%;
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 900px) and (min-width: 727px) {
+    * {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 726px) and (min-width: 600px) {
+    * {
+      width: 130px;
+      height: 130px;
+    }
+  }
+
+  @media (max-width: 599px) and (min-width: 401px) {
+    * {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    * {
+      width: 80px;
+      height: 80px;
     }
   }
 }
